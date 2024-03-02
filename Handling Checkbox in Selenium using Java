@@ -1,0 +1,46 @@
+1.Check the first Checkbox and verify if it is successfully checked and Uncheck it again to verify if it is successfully Unchecked
+driver.findElement(By.id("checkBoxOption1")).click();
+System.out.println(driver.findElement(By.id("checkBoxOption1")).isSelected()); //Should Print True
+driver.findElement(By.id("checkBoxOption1")).click();
+System.out.println(driver.findElement(By.id("checkBoxOption1")).isSelected()); //Should Print false
+
+2.How to get the Count of number of check boxes present in the page
+driver.findElements(By.cssSelector("input[value='checkbox']")).size();
+
+Working Code:
+package Seleniumwebdriver;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SelIntroduction {
+
+
+Explain
+public static void main(String[] args) throws InterruptedException {
+	ChromeDriver driver=new ChromeDriver();
+	
+	//1. Check the first  Checkbox and verify if it is successfully checked and Uncheck it again to verify if it is successfully Unchecked
+	driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+	//click on checkBox
+	driver.findElement(By.id("checkBoxOption1")).click();
+	
+	//click again to unselected the checkbox
+	driver.findElement(By.id("checkBoxOption1")).click();
+	
+	//Npw validate if checkbox is selected or not
+	if(driver.findElement(By.id("checkBoxOption1")).isSelected())
+	{
+		System.out.println("CheckBox is selected");
+	}
+	else
+	{
+		System.out.println("Checkbox is not selected");
+	}
+	
+	//How to get the Count of number of check boxes present in the page
+	java.util.List<WebElement> checkBoxList = driver.findElements(By.cssSelector("input[type='checkbox']")); 		
+	int checkBoxCount = checkBoxList.size();
+	System.out.println("Number of checkboxes on the page: " + checkBoxCount);
+}
